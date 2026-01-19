@@ -9,12 +9,19 @@ import pickle
 
 # Function to generate and display caption
 def generate_and_display_caption(image_path, model_path, tokenizer_path, feature_extractor_path, max_length=34,img_size=224):
-    # Load the trained models and tokenizer
-    caption_model = load_model(model_path)
-    feature_extractor = load_model(feature_extractor_path)
+    try:
+        # Load the trained models and tokenizer
+        caption_model = load_model(model_path)
+        feature_extractor = load_model(feature_extractor_path)
 
-    with open(tokenizer_path, "rb") as f:
-        tokenizer = pickle.load(f)
+        with open(tokenizer_path, "rb") as f:
+            tokenizer = pickle.load(f)
+    except FileNotFoundError as e:
+        st.error(f"Model or tokenizer file not found: {e}")
+        return
+    except Exception as e:
+        st.error(f"Error loading models or tokenizer: {e}")
+        return
 
     # Preprocess the image
     img = load_img(image_path, target_size=(img_size, img_size))
