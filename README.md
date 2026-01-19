@@ -180,8 +180,8 @@ We welcome contributions! If you have suggestions for improving the model, the w
 
 ## 📄 License
 
-This project is not currently licensed. Please consider adding a `LICENSE` file for clarity on usage and distribution. <!-- TODO: Add license information. Create a LICENSE file in the repository root. -->
 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ## 🙏 Acknowledgments
 
 -   **TensorFlow & Keras**: For providing powerful deep learning frameworks.
