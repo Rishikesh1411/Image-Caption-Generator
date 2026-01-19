@@ -5,10 +5,21 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import matplotlib.pyplot as plt
 import pickle
+import os
 
 
 # Function to generate and display caption
-def generate_and_display_caption(image_path, model_path, tokenizer_path, feature_extractor_path, max_length=34,img_size=224):
+def generate_and_display_caption(image_path, model_path, tokenizer_path, feature_extractor_path, max_length=34, img_size=224):
+    if not os.path.exists(model_path):
+        st.error(f"Model file not found: {model_path}")
+        return
+    if not os.path.exists(feature_extractor_path):
+        st.error(f"Feature extractor file not found: {feature_extractor_path}")
+        return
+    if not os.path.exists(tokenizer_path):
+        st.error(f"Tokenizer file not found: {tokenizer_path}")
+        return
+    
     try:
         # Load the trained models and tokenizer
         caption_model = load_model(model_path)
@@ -16,11 +27,8 @@ def generate_and_display_caption(image_path, model_path, tokenizer_path, feature
 
         with open(tokenizer_path, "rb") as f:
             tokenizer = pickle.load(f)
-    except FileNotFoundError as e:
-        st.error(f"Model or tokenizer file not found: {e}")
-        return
     except Exception as e:
-        st.error(f"Error loading models or tokenizer: {e}")
+        st.error(f"Error loading models/tokenizer: {str(e)}")
         return
 
     # Preprocess the image
@@ -50,7 +58,10 @@ def generate_and_display_caption(image_path, model_path, tokenizer_path, feature
     plt.imshow(img)
     plt.axis('off')
     plt.title(caption, fontsize=16, color='blue')
-    st.pyplot(plt)  # Display image in Streamlit
+    try:
+        st.pyplot(plt)  # Display image in Streamlit
+    except Exception as e:
+        st.error(f"Error generating caption: {str(e)}")
 
 
 # Streamlit app interface
