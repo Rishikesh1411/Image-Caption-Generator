@@ -113,10 +113,13 @@ project-root/
 ├── boy.jpg                         # Sample image for testing/demonstration
 ├── dog.jpg                         # Sample image for testing/demonstration
 ├── girl.jpg                        # Sample image for testing/demonstration
-├── image-caption-generator-using-deep-learning-cnn-ls.ipynb # Jupyter Notebook for model development
+├── image-caption-generator-using-deep-learning-cnn-ls.ipynb
+│                                  # Jupyter Notebook for model development
 ├── man.jpg                         # Sample image for testing/demonstration
 ├── requirements.txt                # Python package dependencies
-└── uploaded_image.jpg              # Placeholder file for uploaded images
+├── uploaded_image.jpg              # Placeholder file for uploaded images
+└── LICENSE.txt                     # Project license
+
 ```
 
 ## ⚙️ Configuration
